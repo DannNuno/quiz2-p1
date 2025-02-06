@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Quiz 2
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,12 +9,44 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large">Chucknorris api</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <ion-content class="ion-padding">
+
+    <ng-container *ngIf="randomJoke;else loading">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>
+            Random Joke:
+          </ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          {{randomJoke.value}}
+        </ion-card-content>
+
+      </ion-card>
+    </ng-container>
+
+    <ng-container *ngIf="listCategories;else loading">
+      Categorias:
+      <ion-card 
+      *ngFor="let item of listCategories;index as i">
+        <ion-card-header>
+          <ion-card-title>
+            {{item}}
+          </ion-card-title>
+        </ion-card-header>
+      </ion-card>
+    </ng-container>
+
+  </ion-content>
+
+  <ng-template #loading>
+    <ion-spinner name="crescent">
+    </ion-spinner>
+  </ng-template>
+
 </ion-content>
